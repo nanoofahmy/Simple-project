@@ -11,9 +11,10 @@ module.exports = (db, DataTypes) => {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          is: ["^[a-z]+$", 'i']
-        }}
+        // validate: {
+        //   is: ["^[a-z]+$", 'i']
+        // }
+      }
         ,
         phoneNumber: {
             type: DataTypes.STRING(14),

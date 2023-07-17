@@ -30,4 +30,4 @@ db.sync({ force: false }).then(() => {
   module.exports = {
     User,
   }
-module.exports = db;
+// module.exports = db;
