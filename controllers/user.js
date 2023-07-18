@@ -15,7 +15,7 @@ exports.signup = async function (request, response, next) {
         } 
         const User = await db.User.create({ username , phoneNumber , gender ,password : bcrypt.hashSync (password,8)  });
         const token = jwt.sign({ id: User.id  , phoneNumber:User.phoneNumber},"AGEL-1234$-DEVELOPMENT-FINTECH",{expiresIn: 86400, })
-      response.status(201).json({ data :User , token , message: 'User registered successfully' });
+        response.status(201).json({ data :User , token , message: 'User registered successfully' });
         
       } catch (error) {
         console.error('Error searching for user:', error);
@@ -44,15 +44,7 @@ exports.login = async function (request, response, next) {
         });
       }
       var decoded = jwt.verify(token, "AGEL-1234$-DEVELOPMENT-FINTECH");
-      console.log(decoded) // bar
-   
-    // const token = jwt.sign({ id: user.id  , phoneNumber:user.phoneNumber},
-    //     config.secret,
-    //     {
-    //       algorithm: 'HS256',
-    //       allowInsecureKeySizes: true,
-    //       expiresIn: 86400, // 24 hours
-    //     });
+
        response.status(201).json({ phoneNumber :user.phoneNumber ,token ,message: 'User login successfully' });
         
         
