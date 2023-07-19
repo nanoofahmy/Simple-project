@@ -2,6 +2,10 @@ const db = require('../models/index')
 const {sequelize} = require('../config/db');
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
 exports.signup = async function (request, response, next) {
 
    
@@ -52,5 +56,46 @@ exports.login = async function (request, response, next) {
         console.error('Error searching for user:', error);
       }
 
+    
+}
+exports.uploadImage = async function (request, response, next) {
+
+     
+  if (!request.file) {
+    return response.status(400).send('No file uploaded.');
+  }
+
+  // Accessing file information
+  const fileName = request.file.filename;
+  const filePath = request.file.path;
+  const originalName = request.file.originalname;
+
+  // Check the file extension
+  const fileExtension = path.extname(originalName);
+  // Generate timestamp
+  const timestamp = new Date().toISOString().replace(/:/g,"-");
+
+  // Move the file to the desired directory based on file extension
+  let destinationPath;
+  if (fileExtension === '.png') {
+    destinationPath = path.join(__dirname, 'images',  `${timestamp}${originalName}`);
+  } else if (fileExtension === '.pdf') {
+    destinationPath = path.join(__dirname, 'documents', `${timestamp}${originalName}`);
+  } else {
+    // Delete the uploaded file if it has an unsupported extension
+    fs.unlinkSync(filePath);
+    return response.status(400).send('Only PNG images and PDF documents are allowed.');
+  }
+
+  // Create the destination directory if it doesn't exist
+  const destinationDir = path.dirname(destinationPath);
+  if (!fs.existsSync(destinationDir)) {
+    fs.mkdirSync(destinationDir, { recursive: true });
+  }
+
+  fs.renameSync(filePath, destinationPath);
+
+  // Send a success response
+  response.status(200).send('File uploaded successfully.');
     
 }
