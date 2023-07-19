@@ -64,6 +64,13 @@ exports.uploadImage = async function (request, response, next) {
   if (!request.file) {
     return response.status(400).send('No file uploaded.');
   }
+  // const fileName = req.file.originalname;
+  // const fileExtension = path.extname(fileName);
+  // if (fileExtension !== '.png' && fileExtension !== '.pdf') {
+  //   // Delete the uploaded file if it has an unsupported extension
+  //   fs.unlinkSync(filePath);
+  //   return res.status(400).send('Only PNG images and PDF documents are allowed.');
+  // }
   // Send a success response
   response.status(200).send('File uploaded successfully.');
     

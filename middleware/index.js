@@ -26,9 +26,16 @@ const storage = multer.diskStorage({
   
     if (allowedFileTypes.includes(fileExtension)) {
       cb(null, true); // Accept the file
-    } else {
-      cb(null, false); // Reject the file
-    }
+     }
+   else {
+        cb(null, false); // Reject the file
+      }
+    // } else  {
+    //     // Reject the file with an error
+    //     const error = new Error('Only PNG images and PDF documents are allowed.');
+    //     error.code = 'UNSUPPORTED_FILE_TYPE';
+    //     return cb(error, false);
+    //   }
   };
   
   const upload = multer({ storage, fileFilter });
