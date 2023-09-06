@@ -11,7 +11,7 @@ const { authJwt } = require("../middleware");
 
 
 router.post('/signup',  controller.signup)
-router.post('/login', authJwt.verifyToken(), controller.login)
+router.post('/login', controller.login)
 
 
  module.exports = router

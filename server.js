@@ -32,7 +32,7 @@ try {
 //     );
 //     next();
 //   });
-  require('./routes/index')(app);
-
-
+ //  require('./routes/index')(app);
+ const router = require('./routes/users');
+ app.use(router)
 app.listen(PORT, () => console.log(`server is running  on port ${PORT}`))
