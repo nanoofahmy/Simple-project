@@ -28,7 +28,7 @@ npm run dev
 
 - API Document endpoints
 
- postman https://ageldevelopment.postman.co/workspace/Agel~346f9203-5d44-4d05-8831-4fca9920d1f8/collection/21814719-7aff79de-add7-43f9-b886-4e6e4c8f288f?action=share&creator=21814719
+ postman :
 
 ```
 
