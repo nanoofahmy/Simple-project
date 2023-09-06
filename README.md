@@ -1,4 +1,5 @@
-
+# About
+- this project login and signup app and upload image and pdf 
 # Environment variables
 -in the config folder add a file called config.env
 
